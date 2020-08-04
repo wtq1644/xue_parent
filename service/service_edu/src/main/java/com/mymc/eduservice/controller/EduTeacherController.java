@@ -23,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/eduservice/teacher")
+@CrossOrigin
 public class EduTeacherController {
 
 
