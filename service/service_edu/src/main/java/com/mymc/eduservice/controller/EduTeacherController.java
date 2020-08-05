@@ -32,7 +32,7 @@ public class EduTeacherController {
 
     //1 查询讲师表说有数据
 
-    @GetMapping("findall")
+    @GetMapping("findAll")
     public R findAllTeacher() {
         List<EduTeacher> list = eduTeacherService.list(null);
         return R.ok().data("items", list);
