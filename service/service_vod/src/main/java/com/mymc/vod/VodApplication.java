@@ -1,4 +1,4 @@
-package com.mymc.oss;
+package com.mymc.vod;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @ComponentScan(basePackages = {"com.mymc"})
 @EnableDiscoveryClient  //nacos注册
-public class OssApplication {
+public class VodApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(com.mymc.oss.OssApplication.class, args);
+        SpringApplication.run(com.mymc.vod.VodApplication.class, args);
     }
 }
