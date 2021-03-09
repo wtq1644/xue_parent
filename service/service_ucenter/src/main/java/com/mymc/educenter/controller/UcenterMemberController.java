@@ -3,9 +3,11 @@ package com.mymc.educenter.controller;
 
 import com.mymc.commonutils.JwtUtils;
 import com.mymc.commonutils.R;
+import com.mymc.commonutils.ordervo.UcenterMemberOrder;
 import com.mymc.educenter.entity.UcenterMember;
 import com.mymc.educenter.entity.vo.RegisterVo;
 import com.mymc.educenter.service.UcenterMemberService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2020-10-03
  */
 @RestController
-@RequestMapping("/educenter/ucenter-member")
+@RequestMapping("/educenter/member")
 public class UcenterMemberController {
 
     @Autowired
@@ -51,6 +53,22 @@ public class UcenterMemberController {
         //查询数据库根据用户id获取用户信息
         UcenterMember member = memberService.getById(memberId);
         return R.ok().data("userInfo",member);
+    }
+
+    //根据用户id获取用户信息
+    @PostMapping("/getUserInfoOrder/{id}")
+    public UcenterMemberOrder getUserInfoOrder(@PathVariable String id) {
+        UcenterMember member = this.memberService.getById(id);
+        UcenterMemberOrder ucenterMemberOrder = new UcenterMemberOrder();
+        BeanUtils.copyProperties(member,ucenterMemberOrder);
+        return ucenterMemberOrder;
+    }
+
+    //查询某一天的注册人数
+    @GetMapping("/countRegister/{day}")
+    public R countRegister(@PathVariable String day) {
+        Integer count = this.memberService.countRegister(day);
+        return R.ok().data("countRegister",count);
     }
 }
 
